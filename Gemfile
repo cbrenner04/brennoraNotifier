@@ -32,6 +32,7 @@ group :development, :test do
   gem 'poltergeist', '~> 1.17'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
   gem 'rspec-rails', '~> 3.7', '>= 3.7.2'
+  gem 'rspec_junit_formatter', '~> 0.3.0'
 end
 
 group :development do
