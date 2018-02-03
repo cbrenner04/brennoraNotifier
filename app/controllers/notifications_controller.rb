@@ -22,6 +22,8 @@ class NotificationsController < ApplicationController
     end
   end
 
+  def preview_email; end
+
   private
 
   def notification_params

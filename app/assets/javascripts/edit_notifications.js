@@ -15,3 +15,8 @@ function appendSmsLink() {
         }
     });
 }
+
+function renderEmailPreview(input_object) {
+    var url = input_object.form.action + '/preview_email/';
+    $.get(url, { email_body: input_object.value });
+}

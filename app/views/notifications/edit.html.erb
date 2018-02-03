@@ -29,7 +29,7 @@
           <small class="form-text text-muted">
             This editor support Markdown. For a tutorial on Markdown go <a href="http://commonmark.org/help/" target="_blank">here</a>
           </small>
-          <%= f.text_area :email_body, class: "form-control", rows: "10", style: { outline: 'none' } %>
+          <%= f.text_area :email_body, onkeyup: "renderEmailPreview(this)", class: "form-control", rows: "10" %>
         </div>
       </div>
 
@@ -39,8 +39,8 @@
           This is a preview of what your email will look like.
         </small>
         <div class="card">
-          <div class="card-body">
-            <%= simple_format(markdown(@notification.email_body)) %>
+          <div class="card-body" id="email-body-preview">
+            <%= render "notifications/preview", email_body: @notification.email_body %>
           </div>
         </div>
       </div>
