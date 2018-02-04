@@ -91,11 +91,25 @@ RSpec.describe 'Experiences', type: :feature do
       fill_in 'SMS Link', with: 'https://www.google.com'
       click_on 'Append link to SMS body'
       mock_bitly_link = ' short.url'
-      sms_body_input_text = page.find('#notification_sms_body').value
+      sms_body_input_text = find('#notification_sms_body').value
       expect(sms_body_input_text)
         .to eq "#{notification.sms_body}#{mock_bitly_link}"
       new_character_count = starting_character_count + mock_bitly_link.length
       expect(page).to have_text "#{new_character_count} characters"
+    end
+
+    it 'shows live preview and parses markdown of email body', :js do
+      link_text = 'link'
+      link_value = 'https://www.google.com'
+      fill_in 'Email body', with: "[#{link_text}](#{link_value})"
+      email_body_input_text = find('#email-body-preview').text
+      wait_for do
+        execute_script("$('#notification_email_body').keyup()")
+        email_body_input_text = find('#email-body-preview').text
+        email_body_input_text == link_text
+      end
+      expect(email_body_input_text).to eq link_text
+      expect(page).to have_css "a[href='#{link_value}']"
     end
 
     it 're-renders and gives correct error message if information is bad' do
