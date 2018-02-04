@@ -13,6 +13,11 @@
       <small id="sms-character-count-help" class="form-text text-muted">
         <%= @notification.sms_body.length %> characters
       </small>
+      <small class="form-text text-muted" id="sms-full-link">
+        <% if @sms_link %>
+          Current SMS link: <%= h @sms_link %>
+        <% end %>
+      </small>
     </div>
 
     <div class="form-group">

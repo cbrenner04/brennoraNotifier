@@ -79,6 +79,13 @@ RSpec.describe 'Experiences', type: :feature do
       expect(page).to have_text "#{character_count} characters"
     end
 
+    it 'gives current sms link' do
+      notification
+        .update!(sms_body: "#{notification.sms_body} http://bit.ly/asdf1234")
+      page.refresh
+      expect(page).to have_text 'Current SMS link: http://long.url'
+    end
+
     it 'updates sms body character count', :js do
       starting_character_count = notification.sms_body.length
       expect(page).to have_text "#{starting_character_count} characters"
@@ -88,7 +95,8 @@ RSpec.describe 'Experiences', type: :feature do
 
     it 'allows for appending a bitly link to the sms body', :js do
       starting_character_count = notification.sms_body.length
-      fill_in 'SMS Link', with: 'https://www.google.com'
+      link_url = 'https://www.google.com'
+      fill_in 'SMS Link', with: link_url
       click_on 'Append link to SMS body'
       mock_bitly_link = ' short.url'
       sms_body_input_text = find('#notification_sms_body').value
@@ -96,6 +104,7 @@ RSpec.describe 'Experiences', type: :feature do
         .to eq "#{notification.sms_body}#{mock_bitly_link}"
       new_character_count = starting_character_count + mock_bitly_link.length
       expect(page).to have_text "#{new_character_count} characters"
+      expect(page).to have_text "Current SMS link: #{link_url}"
     end
 
     it 'shows live preview and parses markdown of email body', :js do
