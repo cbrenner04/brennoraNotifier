@@ -6,9 +6,8 @@
   <%= link_to "Add", new_event_experience_path(@event) %>
 </div>
 
-<% @event.experiences.each do |experience| %>
-  <div class="accordion">
-    <%= render "experiences/experience", experience: experience %>
+  <div id="accordion">
+    <% @event.experiences.each do |experience| %>
+      <%= render "experiences/experience", experience: experience %>
+    <% end %>
   </div>
-<% end %>
-
