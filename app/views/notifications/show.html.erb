@@ -26,10 +26,10 @@
   <%= link_to "Add guests", new_event_experience_notification_guests_notification_path(@event, @experience, @notification) %>
 </div>
 
-  <div id="accordion">
-    <% @guests_notifications.each do |guests_notification| %>
-      <%= render "notifications/guest", event: @event, guests_notification: guests_notification, guest: guests_notification.guest %>
-    <% end %>
-  </div>
+<div id="accordion">
+  <% @guests_notifications.each do |guests_notification| %>
+    <%= render "notifications/guest", event: @event, guests_notification: guests_notification, guest: guests_notification.guest %>
+  <% end %>
+</div>
 
 

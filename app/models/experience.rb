@@ -24,7 +24,7 @@ class Experience < ApplicationRecord
   end
 
   def pretty_time_to_send_notification
-      time_to_send_notification.strftime('%-m/%-d/%y %l:%M %P')
+    time_to_send_notification.strftime('%-m/%-d/%y %l:%M %P')
   end
 
   private
@@ -32,5 +32,4 @@ class Experience < ApplicationRecord
   def offset_in_seconds
     notification_offset * 60
   end
-
 end

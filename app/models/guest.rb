@@ -28,7 +28,7 @@ class Guest < ApplicationRecord
 
   def pretty_notification_category
     if notification_category == 'both'
-      "text, email"
+      'text, email'
     else
       notification_category
     end
