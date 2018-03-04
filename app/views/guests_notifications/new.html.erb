@@ -4,7 +4,7 @@
 
 <div>
   <% if @event.guests.count.zero? %>
-    <p><i>Please <%= link_to "add Guests to your Event", event_guests_path(@event) %> before adding them to the "<%= @experience.name %>" Experience</i></p>
+    <p><i>Please <%= link_to "add Guests to this Event", event_guests_path(@event) %> before adding them to the "<%= @experience.name %>" Experience</i></p>
   <% else %>
     <p><i>Please check the box of the Guest(s) you would like to add to this Experience</i></p>
   <% end %>
